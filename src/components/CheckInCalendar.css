@@ -1,0 +1,90 @@
+.react-calendar {
+  border: none;
+  font-family: inherit;
+  width: 100%;
+  max-width: 100%;
+  background-color: #ffffff;
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  padding: 1.25rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.react-calendar__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.react-calendar__navigation button {
+  background: none;
+  border: none;
+  color: #4f46e5;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.75rem;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.react-calendar__navigation button:hover {
+  background-color: #eef2ff;
+  transform: scale(1.05);
+}
+
+.react-calendar__month-view__weekdays {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #9ca3af;
+  margin-bottom: 0.5rem;
+}
+
+.react-calendar__month-view__days__day {
+  padding: 0.75rem 0.25rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+}
+
+.react-calendar__tile {
+  background: none;
+  border: none;
+  text-align: center;
+  padding: 0.6rem 0.4rem;
+  border-radius: 9999px;
+  color: #374151;
+  transition: background 0.2s ease, color 0.2s ease;
+  position: relative;
+}
+
+.react-calendar__tile:hover {
+  background-color: #f3f4f6;
+}
+
+.react-calendar__tile--now {
+  background: #eef2ff !important;
+  color: #4f46e5 !important;
+  font-weight: 600;
+}
+
+.react-calendar__tile--active {
+  background: #4f46e5 !important;
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+/* Highlighted check-in days */
+.bg-indigo-500 {
+  background-color: #f16376 !important;
+}
+
+.text-white {
+  color: white !important;
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
