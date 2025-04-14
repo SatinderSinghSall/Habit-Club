@@ -1,5 +1,7 @@
 # 🌱 Habit Club
 
+** App is live 🚀: https://habit-club.vercel.app/
+
 **Habit Club** is a modern, full-stack social habit tracking app built to help users stay consistent with their goals while building meaningful habits alongside friends. It combines personal habit management, smart progress analytics, and a social accountability layer to create a powerful growth experience.
 
 ---
