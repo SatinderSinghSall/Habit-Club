@@ -57,7 +57,7 @@
 
 ```bash
 # 1. Clone the repository
-git clone https://SatinderSinghSall/habit-club.git
+git clone https://github.com/SatinderSinghSall/Habit-Club.git
 cd habit-club
 
 # 2. Install dependencies
