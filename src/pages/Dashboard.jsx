@@ -13,6 +13,7 @@ const Dashboard = () => {
   const [habitName, setHabitName] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [adding, setAdding] = useState(false);
 
   const fetchHabits = async () => {
     try {
@@ -40,6 +41,8 @@ const Dashboard = () => {
       return;
     }
 
+    setAdding(true); // start loading
+
     try {
       await addHabit(habitName, token);
       setHabitName("");
@@ -48,6 +51,8 @@ const Dashboard = () => {
     } catch (err) {
       console.error(err);
       toast.error("Failed to add habit.");
+    } finally {
+      setAdding(false); // stop loading
     }
   };
 
@@ -86,10 +91,36 @@ const Dashboard = () => {
           />
           <button
             type="submit"
-            className="bg-indigo-600 hover:bg-indigo-700 transition text-white px-4 py-2 rounded-xl flex items-center justify-center gap-1 whitespace-nowrap"
+            disabled={adding}
+            className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 disabled:cursor-not-allowed transition text-white px-4 py-2 rounded-xl flex items-center justify-center gap-2 whitespace-nowrap"
           >
-            <Plus size={18} />
-            Add
+            {adding ? (
+              <svg
+                className="animate-spin h-4 w-4 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v8H4z"
+                ></path>
+              </svg>
+            ) : (
+              <>
+                <Plus size={18} />
+                Add
+              </>
+            )}
           </button>
         </form>
 
