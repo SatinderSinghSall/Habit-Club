@@ -7,24 +7,27 @@ function Login() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false); // 🔹 Add loading state
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // 🔹 Start loading
+    setError(""); // Clear previous error
     try {
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/auth/login`,
         formData
       );
       localStorage.setItem("token", res.data.token);
-      // navigate("/dashboard");
-      // console.log("Login successful, navigating to dashboard...");
       window.location.href = "/dashboard";
     } catch (err) {
       console.log(err);
       setError(err.response?.data?.message || "Invalid credentials");
+    } finally {
+      setLoading(false); // 🔹 Stop loading
     }
   };
 
@@ -59,8 +62,38 @@ function Login() {
             name="password"
             value={formData.password}
           />
-          <button className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition font-medium">
-            Login
+          <button
+            type="submit"
+            className="w-full flex items-center justify-center gap-2 bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition font-medium disabled:opacity-60"
+            disabled={loading}
+          >
+            {loading ? (
+              <>
+                <svg
+                  className="animate-spin h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                  ></path>
+                </svg>
+                Logging in...
+              </>
+            ) : (
+              "Login"
+            )}
           </button>
           {error && <p className="text-red-500 text-sm">{error}</p>}
         </form>
