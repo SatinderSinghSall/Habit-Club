@@ -11,12 +11,15 @@ function Signup() {
     password: "",
   });
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false); // <- new
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // start loader
+    setError("");
     try {
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/auth/signup`,
@@ -27,6 +30,8 @@ function Signup() {
     } catch (err) {
       console.log(err);
       setError(err.response?.data?.message || "Something went wrong");
+    } finally {
+      setLoading(false); // stop loader
     }
   };
 
@@ -69,7 +74,14 @@ function Signup() {
             name="password"
             value={formData.password}
           />
-          <button className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition font-medium">
+          <button
+            className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition font-medium flex justify-center items-center gap-2 disabled:opacity-50"
+            type="submit"
+            disabled={loading}
+          >
+            {loading && (
+              <span className="loader border-2 border-white border-t-transparent w-4 h-4 rounded-full animate-spin"></span>
+            )}
             Create Account
           </button>
           {error && <p className="text-red-500 text-sm">{error}</p>}
