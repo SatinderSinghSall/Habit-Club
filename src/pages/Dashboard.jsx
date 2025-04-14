@@ -75,7 +75,7 @@ const Dashboard = () => {
         {/* Form */}
         <form
           onSubmit={handleAddHabit}
-          className="flex gap-3 items-center shadow-sm bg-white rounded-2xl px-4 py-3 border"
+          className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center shadow-sm bg-white rounded-2xl px-4 py-3 border"
         >
           <input
             type="text"
@@ -86,7 +86,7 @@ const Dashboard = () => {
           />
           <button
             type="submit"
-            className="bg-indigo-600 hover:bg-indigo-700 transition text-white px-4 py-2 rounded-xl flex items-center gap-1"
+            className="bg-indigo-600 hover:bg-indigo-700 transition text-white px-4 py-2 rounded-xl flex items-center justify-center gap-1 whitespace-nowrap"
           >
             <Plus size={18} />
             Add
