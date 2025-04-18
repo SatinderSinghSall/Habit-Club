@@ -1,14 +1,19 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, Loader2 } from "lucide-react";
 import toast from "react-hot-toast";
 
 const HabitCard = ({ habit, onCheckIn, refresh }) => {
+  const [loading, setLoading] = useState(false);
+
   const isCheckedInToday =
     new Date(habit.lastCheckIn).toDateString() === new Date().toDateString();
 
   const handleClick = async (e) => {
     e.stopPropagation(); // Prevent link navigation
+    if (isCheckedInToday || loading) return;
 
+    setLoading(true);
     try {
       await onCheckIn(habit._id);
       toast.success("Check-in complete! ✅");
@@ -16,6 +21,8 @@ const HabitCard = ({ habit, onCheckIn, refresh }) => {
     } catch (err) {
       console.error(err);
       toast.error("Check-in failed.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -40,15 +47,24 @@ const HabitCard = ({ habit, onCheckIn, refresh }) => {
 
       <button
         onClick={handleClick}
-        disabled={isCheckedInToday}
+        disabled={isCheckedInToday || loading}
         className={`mt-6 w-full flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium rounded-xl transition ${
-          isCheckedInToday
+          isCheckedInToday || loading
             ? "bg-gray-200 text-gray-500 cursor-not-allowed"
             : "bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm"
         }`}
       >
-        <CheckCircle size={16} />
-        {isCheckedInToday ? "Checked In Today" : "Check In"}
+        {loading ? (
+          <>
+            <Loader2 size={16} className="animate-spin" />
+            Checking In...
+          </>
+        ) : (
+          <>
+            <CheckCircle size={16} />
+            {isCheckedInToday ? "Checked In Today" : "Check In"}
+          </>
+        )}
       </button>
     </div>
   );
