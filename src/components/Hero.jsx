@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+
 import habit1 from "../assets/images/habit1.png";
 import habit2 from "../assets/images/habit2.png";
 import habit3 from "../assets/images/habit3.png";
@@ -10,6 +12,7 @@ const images = [habit1, habit2, habit3, habit4, habit5];
 
 function Hero() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -38,7 +41,10 @@ function Hero() {
             friends. Your better self starts here.
           </p>
           <div className="mt-8 flex justify-center md:justify-start">
-            <button className="px-6 py-3 text-white rounded-full bg-indigo-600 hover:bg-indigo-700 transition shadow-lg">
+            <button
+              className="px-6 py-3 text-white rounded-full bg-indigo-600 hover:bg-indigo-700 transition shadow-lg"
+              onClick={() => navigate("/dashboard")}
+            >
               Get Started
             </button>
           </div>
