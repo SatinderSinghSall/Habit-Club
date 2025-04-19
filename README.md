@@ -64,7 +64,7 @@ cd habit-club
 
 # 2. Install dependencies
 npm install
-cd client && npm install
+cd backend && npm install
 
 # 3. Set environment variables
 cp .env.example .env
@@ -79,3 +79,7 @@ npm run dev
 
 # In /client
 npm run dev
+
+---
+
+## App Preview
