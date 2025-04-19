@@ -61,12 +61,12 @@
 ![Screenshot (344)](https://github.com/user-attachments/assets/03b00436-c703-4278-be0f-29a58dc4eeb8)
 
 
-## Habit Card Detail Page:
-![Screenshot (347)](https://github.com/user-attachments/assets/f0a94a0f-186f-4c0b-8ce0-81a500069aa8)
-
-
 ## Dashboard Page:
 ![Screenshot (345)](https://github.com/user-attachments/assets/093d697f-f5d0-4a57-87c1-46b276937677)
+
+
+## Habit Card Detail Page:
+![Screenshot (347)](https://github.com/user-attachments/assets/f0a94a0f-186f-4c0b-8ce0-81a500069aa8)
 
 
 ## Friends Dashboard Page:
