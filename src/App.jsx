@@ -8,7 +8,9 @@ import { Toaster } from "react-hot-toast";
 import HabitDetails from "./pages/HabitDetails";
 import FriendsPage from "./pages/FriendsPage";
 import Footer from "./components/Footer";
+import FeaturesPage from "./pages/FeaturesPage";
 import PageNotFoundRoute from "./components/PageNotFoundRoute";
+import AboutPage from "./pages/AboutPage";
 
 import "./App.css";
 
@@ -21,6 +23,9 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/friends" element={<FriendsPage />} />
         <Route path="/footer" element={<Footer />} />
+        <Route path="/features" element={<FeaturesPage />} />
+        <Route path="/about" element={<AboutPage />} />
+
         <Route path="*" element={<PageNotFoundRoute />} />
 
         {/* ✅ Protected Routes for Dashboard: */}
