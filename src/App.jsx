@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 import FeaturesPage from "./pages/FeaturesPage";
 import PageNotFoundRoute from "./components/PageNotFoundRoute";
 import AboutPage from "./pages/AboutPage";
+import ContactPage from "./pages/ContactPage";
 
 import "./App.css";
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/footer" element={<Footer />} />
         <Route path="/features" element={<FeaturesPage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/contact" element={<ContactPage />} />
 
         <Route path="*" element={<PageNotFoundRoute />} />
 
