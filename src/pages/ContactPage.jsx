@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import toast from "react-hot-toast";
 
 export default function ContactPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -50,24 +51,27 @@ export default function ContactPage() {
       setIsLoading(true);
 
       try {
-        const response = await fetch("http://localhost:5000/api/contact", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        });
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/contact`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          }
+        );
 
         const data = await response.json();
         if (response.ok) {
-          alert(data.message); // Success message
+          toast.success(data.message); // Success message
           setFormData({ name: "", email: "", message: "" }); // Reset form
         } else {
-          alert(data.error || "Something went wrong.");
+          toast.error(data.error || "Something went wrong.");
         }
       } catch (error) {
         console.error(error);
-        alert("Failed to send message.");
+        toast.error("Failed to send message.");
       } finally {
         setIsLoading(false);
       }
